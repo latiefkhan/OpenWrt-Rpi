@@ -4,7 +4,7 @@
 # Lisence: MIT
 # Author: P3TERX
 # Blog: https://p3terx.com
-# HelmiWrt by khan
+# HelmiWrt mod test
 #=================================================
 
 name: Build Raspberry Pi 4
@@ -176,12 +176,12 @@ jobs:
           cd openwrt/bin/targets/*/*
           rm -rf packages
           find . -type f -name 'openwrt-*' | while read FILE ; do
-            newfile="$(echo ${FILE} |sed -e 's/openwrt-/helmiwrt-/')" ;
+            newfile="$(echo ${FILE} |sed -e 's/openwrt-/raspwrt-/')" ;
             echo -e $(readlink -f ${FILE}) ;
             mv "${FILE}" "${newfile}" ;
           done
-          find . -type f -name 'config.buildinfo' -exec mv "{}" "helmiwrt-config-${{ env.DEVICE_NAME }}.txt" \;
-          find . -type f -name 'sha256sums' -exec mv "{}" "helmiwrt-sha256sums-${{ env.DEVICE_NAME }}.txt" \;
+          find . -type f -name 'config.buildinfo' -exec mv "{}" "raspwrt-config-${{ env.DEVICE_NAME }}.txt" \;
+          find . -type f -name 'sha256sums' -exec mv "{}" "raspwrt-sha256sums-${{ env.DEVICE_NAME }}.txt" \;
           echo "FIRMWARE=$PWD" >> $GITHUB_ENV
           echo "::set-output name=status::success"
           echo "::set-output name=ORGANIZE_STATUS::success"
